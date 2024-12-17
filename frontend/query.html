@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水库信息查询 - 智慧水利信息平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/query.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #007BFF;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .query-main {
+            padding: 20px;
+        }
+        .query-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        select, input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .advanced-filters {
+            display: flex;
+            flex-direction: column;
+        }
+        .advanced-filters label {
+            margin: 5px 0;
+        }
+        .search-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-btn:hover {
+            background: #218838;
+        }
+        .view-toggle {
+            margin: 20px 0;
+        }
+        .view-toggle button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            background: #007BFF;
+            color: white;
+        }
+        .view-toggle button.active {
+            background: #0056b3;
+        }
+        .result-view {
+            margin-top: 20px;
+        }
+        .data-visualization {
+            margin-top: 30px;
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .chart-container {
+            height: 300px; /* Adjust height as needed */
+        }
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+
+        .results-table th,
+        .results-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .results-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+
+        .results-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .results-table tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>水库信息查询</h1>
+    </header>
+
+    <main class="query-main">
+        <div class="query-container">
+            <div class="query-filters">
+                <h2>查询条件</h2>
+                <div class="filter-form">
+                    <div class="form-group">
+                        <label>查询方式</label>
+                        <select id="query-type">
+                            <option value="location">查询水库地理位置</option>
+                            <option value="real-time">查询水库实时信息</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="location-filters">
+                        <label>地理位置查询条件（可填可不填）</label>
+                        <input type="text" placeholder="行政区">
+                        <input type="text" placeholder="地址">
+                        <input type="text" placeholder="流域">
+                        <input type="text" placeholder="水系">
+                        <input type="text" placeholder="河名">
+                        <input type="text" placeholder="站名">
+                        <input type="text" placeholder="站类型">
+                    </div>
+
+                    <div class="form-group" id="real-time-filters" style="display: none;">
+                        <label>实时信息查询条件（必填河名和库名）</label>
+                        <input type="text" placeholder="河名" required>
+                        <input type="text" placeholder="库名" required>
+                        <div class="form-group">
+                            <label>时间（可选）</label>
+                            <input type="date">
+                        </div>
+                    </div>
+
+                    <button class="search-btn">搜索</button>
+                </div>
+            </div>
+
+            <div class="query-results">
+                <div class="view-toggle">
+                    <button class="active" data-view="list">列表视图</button>
+                    <button data-view="map">地图视图</button>
+                </div>
+                
+                <div class="result-view list-view">
+                    <table class="results-table" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>站名</th>
+                                <th>行政区</th>
+                                <th>地址</th>
+                                <th>流域</th>
+                                <th>水系</th>
+                                <th>河名</th>
+                                <th>测站类型</th>
+                                <th>经度</th>
+                                <th>纬度</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 结果将通过JavaScript动态插入 -->
+                        </tbody>
+                    </table>
+                    <div class="no-results" style="display: none;">
+                        <p>未找到匹配的结果</p>
+                    </div>
+                </div>
+                
+                <div class="result-view map-view" style="display: none;">
+                    <!-- 地图将通过 JavaScript 动态生成 -->
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-visualization">
+            <h3>数据可视化</h3>
+            <div class="chart-container">
+                <!-- 图表将通过 JavaScript 动态生成 -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <!-- 页脚 -->
+    </footer>
+
+    <script src="./js/query.js"></script>
+    <script>
+        document.getElementById('query-type').addEventListener('change', function() {
+            const locationFilters = document.getElementById('location-filters');
+            const realTimeFilters = document.getElementById('real-time-filters');
+            if (this.value === 'location') {
+                locationFilters.style.display = 'block';
+                realTimeFilters.style.display = 'none';
+            } else {
+                locationFilters.style.display = 'none';
+                realTimeFilters.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,94 @@
+.ai-assistant {
+    background-color: #f9f9f9; /* 背景颜色 */
+    border: 1px solid #ddd; /* 边框 */
+    border-radius: 8px; /* 圆角 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 阴影 */
+    margin-top: 20px; /* 上边距 */
+}
+
+.assistant-header {
+    background-color: #007bff; /* 头部背景颜色 */
+    color: white; /* 头部文字颜色 */
+    padding: 10px; /* 内边距 */
+    display: flex; /* 使用flex布局 */
+    justify-content: space-between; /* 两端对齐 */
+    align-items: center; /* 垂直居中 */
+    border-top-left-radius: 8px; /* 左上角圆角 */
+    border-top-right-radius: 8px; /* 右上角圆角 */
+}
+
+.assistant-body {
+    padding: 15px; /* 内边距 */
+    max-height: 400px; /* 最大高度 */
+    overflow-y: auto; /* 超出部分滚动 */
+}
+
+.chat-messages {
+    margin-bottom: 10px; /* 下边距 */
+    display: flex; /* 使用flex布局 */
+    flex-direction: column; /* 垂直排列 */
+}
+
+.message {
+    margin: 5px 0; /* 上下边距 */
+    padding: 10px; /* 内边距 */
+    border-radius: 15px; /* 圆角 */
+    position: relative; /* 使时间戳绝对定位 */
+    max-width: 70%; /* 最大宽度 */
+    word-wrap: break-word; /* 自动换行 */
+}
+
+.user-message {
+    background-color: #e1f5fe; /* 用户消息背景颜色 */
+    align-self: flex-end; /* 右对齐 */
+    margin-left: auto; /* 自动左边距，右对齐 */
+    border: 1px solid #b3e5fc; /* 边框 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 阴影 */
+}
+
+.assistant-message {
+    background-color: #c8e6c9; /* 助手消息背景颜色 */
+    align-self: flex-start; /* 左对齐 */
+    margin-right: auto; /* 自动右边距，左对齐 */
+    border: 1px solid #a5d6a7; /* 边框 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 阴影 */
+}
+
+.system-message {
+    background-color: #fff3e0; /* 系统消息背景颜色 */
+    align-self: center; /* 居中对齐 */
+}
+
+.chat-input {
+    display: flex; /* 使用flex布局 */
+    margin-top: 10px; /* 上边距 */
+}
+
+.chat-input input {
+    flex: 1; /* 占据剩余空间 */
+    padding: 10px; /* 内边距 */
+    border: 1px solid #ddd; /* 边框 */
+    border-radius: 5px; /* 圆角 */
+}
+
+.chat-input button {
+    padding: 10px 15px; /* 内边距 */
+    background-color: #007bff; /* 按钮背景颜色 */
+    color: white; /* 按钮文字颜色 */
+    border: none; /* 无边框 */
+    border-radius: 5px; /* 圆角 */
+    cursor: pointer; /* 鼠标指针 */
+}
+
+.chat-input button:hover {
+    background-color: #0056b3; /* 悬停时的背景颜色 */
+}
+
+/* 新增时间戳样式 */
+.timestamp {
+    font-size: 0.8em; /* 时间戳字体大小 */
+    color: #888; /* 时间戳颜色 */
+    position: absolute; /* 绝对定位 */
+    right: 10px; /* 右边距 */
+    bottom: 5px; /* 下边距 */
+} 

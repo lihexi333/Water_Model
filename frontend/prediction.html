@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水库流量预测 - 智慧水利信息平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/prediction.css">
+    <link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
+    <header>
+        <!-- 复用 index.html 的导航栏 -->
+        <nav class="main-nav">
+            <div class="logo">
+                <h1>智慧水利</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#" class="active">水库流量预测</a></li>
+                <li><a href="query.html">水库信息查询</a></li>
+                <li><a href="policy.html">政策解读</a></li>
+                <li><a href="about.html">关于我们</a></li>
+            </ul>
+            <div class="user-actions">
+                <input type="search" placeholder="搜索...">
+                <button class="login-btn">登录</button>
+                <button class="register-btn">注册</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="prediction-main">
+        <div class="prediction-container">
+            <div class="prediction-panel">
+                <h2>水库流量预测</h2>
+                <div class="input-section">
+                    <form id="predictionForm">
+                        <div class="form-group">
+                            <label for="reservoir">水库名称</label>
+                            <input type="text" id="reservoir" name="reservoir" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="startTime">开始时间</label>
+                            <input type="datetime-local" id="startTime" name="startTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="endTime">结束时间</label>
+                            <input type="datetime-local" id="endTime" name="endTime" required>
+                        </div>
+                        <button class="niceButton5"><span>生成预测</span></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="prediction-result">
+                <div class="result-chart">
+                    <div id="flow-chart"></div>
+                </div>
+                <div class="result-analysis">
+                    <h3>预测趋势变化图</h3>
+                    <div class="analysis-content">
+                        <div id="flowRateChart" style="width: 100%; height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-assistant">
+            <div class="assistant-header">
+                <h3>AI 助手</h3>
+                <button class="minimize-btn">-</button>
+                <button class="maximize-btn">+</button>
+            </div>
+            <div class="assistant-body">
+                <div class="chat-messages" id="chat-messages">
+                    <!-- 消息会动态插入这里 -->
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="chat-input" placeholder="输入您的问题...">
+                    <button id="send-btn">发送</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <!-- 页脚内容 -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="js/prediction.js"></script>
+    <script src="js/flowAnalysis.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html> 
