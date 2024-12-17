@@ -1,4 +1,5 @@
-这是大创项目的项目目录结构
+*这是大创项目的项目目录结构*
+***
 project-root/
 │
 ├── frontend/                     # 前端文件夹
@@ -26,3 +27,4 @@ project-root/
 │   └── reservoir_data.csv        # 训练lightgbm模型的数据（一共是30天）
 │
 └── README.md                     # 项目说明文件
+***
